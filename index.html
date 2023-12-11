@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Library</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  
+  <form class="newBook" action="app.js" method="post">
+    <ul>
+      <li>
+        <label for="title">Title</label>
+        <input id="title" name="title" type="text">
+      </li>
+      <li>
+        <label for="author">Author</label>
+        <input type="text" id="author">
+      </li>
+      <li>
+        <label for="yearPublished">Published</label>
+        <input type="text" id="yearPublished">
+      </li>
+      <li>
+        <label for="read">Read</label>
+        <input type="text" id="read">
+      </li>
+      <li>
+        <input id="submitNewBook" type="submit">
+      </li>
+    </ul>
+  </form>
 </body>
+<script src="app.js"></script>
+
 </html>
