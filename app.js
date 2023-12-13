@@ -1,5 +1,5 @@
 const myLibrary = [
-  {
+  /*{
     title: "Invisible Man",
     author: "Ralph Ellison",
     year: 1952,
@@ -16,7 +16,7 @@ const myLibrary = [
     author: "James McBride",
     year: 2023,
     read: 'I have yet to read this.'
-  }
+  }*/
 ];
 
 function Book(title, author, year, read) {
@@ -26,7 +26,7 @@ function Book(title, author, year, read) {
   this.read = read;
 }
 
-Book.prototype.info = function(){
+Book.prototype.info = function () {
   return `${this.title} by ${this.author}, published in ${this.year} and ${this.read}.`
   console.log(this.info);
 }
@@ -42,7 +42,7 @@ const cardContainer = document.getElementById('card-container');
 
 //This function renders books from myLibrary to card containers in the display//
 function displayBook(arrOfObjs) {
-  
+
   arrOfObjs.forEach(element => {
     const card = document.createElement("div");
     cardContainer.appendChild(card);
@@ -63,6 +63,10 @@ function displayBook(arrOfObjs) {
   });
 }
 
-displayBook(myLibrary)
+const newBookBtn = document.getElementById('new-book-btn');
+const newBookForm = document.getElementById('new-book');
 
-
+//button that changes newBookForm display from none to block//
+newBookBtn.addEventListener('click', () => {
+  newBookForm.style.display = 'block';
+});
