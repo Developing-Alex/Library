@@ -1,23 +1,4 @@
-const myLibrary = [
-  /*{
-    title: "Invisible Man",
-    author: "Ralph Ellison",
-    year: 1952,
-    read: 'I have read this.'
-  },
-  {
-    title: "Harry Potter and the Sorcerer's Stone",
-    author: 'J.K. Rowling',
-    year: 1999,
-    read: 'I have read this.'
-  },
-  {
-    title: "The Heaven & Earth Grocery Store",
-    author: "James McBride",
-    year: 2023,
-    read: 'I have yet to read this.'
-  }*/
-];
+const myLibrary = [];
 
 function Book(title, author, year, read) {
   this.title = title;
@@ -40,7 +21,7 @@ console.log(myLibrary)
 
 const cardContainer = document.getElementById('card-container');
 
-//This function renders books from myLibrary to card containers in the display//
+//This function renders books from myLibrary array to card containers in the display//
 function displayBook(arrOfObjs) {
 
   arrOfObjs.forEach(element => {
@@ -71,7 +52,7 @@ newBookBtn.addEventListener('click', () => {
   newBookForm.style.display = 'block';
 });
 
-//Takes user input from html form and creates Book objects to display//
+//Takes user input from html form and creates Book objects and pushes them to myLibrary array//
 function submitNewBook(){
   newBookForm.addEventListener('submit', (event) => {
   event.preventDefault();
