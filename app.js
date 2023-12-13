@@ -1,29 +1,23 @@
 const myLibrary = [
-  /*{
+  {
     title: "Invisible Man",
     author: "Ralph Ellison",
     year: 1952,
-    read: true,
+    read: 'I have read this.'
   },
   {
     title: "Harry Potter and the Sorcerer's Stone",
     author: 'J.K. Rowling',
     year: 1999,
-    read: true,
-  }*/
+    read: 'I have read this.'
+  },
+  {
+    title: "The Heaven & Earth Grocery Store",
+    author: "James McBride",
+    year: 2023,
+    read: 'I have yet to read this.'
+  }
 ];
-
-/*const form = document.querySelector('form');
-
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const title = document.getElementById('title').value;
-    const author = document.getElementById('author').value;
-    const year = document.getElementById('year').value;
-    const read = document.getElementById('read').value;
-    const newBook = new Book(title, author, year, read);
-    myLibrary.push(newBook);
-  });*/
 
 function Book(title, author, year, read) {
   this.title = title;
@@ -37,19 +31,38 @@ Book.prototype.info = function(){
   console.log(this.info);
 }
 
-function addBookToLibrary(obj) {
-  
-  myLibrary.push(obj)
+//This take user input and stores new book objects into an array//
+function addBookToLibrary(newBook) {
+  myLibrary.push(newBook)
 };
-
-addBookToLibrary(new Book('call', 'me', '1245', 'I have yet to read'))
 
 console.log(myLibrary)
 
+const cardContainer = document.getElementById('card-container');
 
-
+//This function renders books from myLibrary to card containers in the display//
 function displayBook(arrOfObjs) {
-  for (let i = 0; i < arrOfObjs.length; i++) {
-
-  }
+  
+  arrOfObjs.forEach(element => {
+    const card = document.createElement("div");
+    cardContainer.appendChild(card);
+    const cardTitle = document.createElement("h3");
+    card.appendChild(cardTitle);
+    const cardAuthor = document.createElement("p");
+    card.appendChild(cardAuthor);
+    const cardYear = document.createElement("p");
+    card.appendChild(cardYear);
+    const cardRead = document.createElement("p");
+    card.appendChild(cardRead);
+    cardTitle.innerText = element.title;
+    cardAuthor.innerText = element.author;
+    cardYear.innerText = element.year;
+    cardRead.innerText = element.read;
+    card.style.border = "thin solid black";
+    card.style.paddingLeft = '15px';
+  });
 }
+
+displayBook(myLibrary)
+
+
