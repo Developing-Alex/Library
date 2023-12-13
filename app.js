@@ -70,3 +70,27 @@ const newBookForm = document.getElementById('new-book');
 newBookBtn.addEventListener('click', () => {
   newBookForm.style.display = 'block';
 });
+
+//Takes user input from html form and creates Book objects to display//
+function submitNewBook(){
+  newBookForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const title = document.getElementById('title').value;
+  const author = document.getElementById('author').value;
+  const year = document.getElementById('year').value;
+  const read = document.getElementById('read').value;
+  const newBook = new Book(title, author, year, read);
+  myLibrary.push(newBook);
+  displayBook(myLibrary);
+});
+//Hides newBookForm and resets inputs//
+  newBookForm.addEventListener('submit', () => {
+    title.value = '';
+    author.value = '';
+    year.value = '';
+    read.value = '';
+    newBookForm.style.display = 'none';
+  })
+}
+
+submitNewBook();
