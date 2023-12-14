@@ -23,8 +23,6 @@ function addBookToLibrary(newBook) {
   myLibrary.push(newBook)
 };
 
-console.log(myLibrary)
-
 //This function renders books from an array to displayable cards on the UI//
 function displayBook(arrOfObjs) {
   
@@ -72,10 +70,10 @@ function displayBook(arrOfObjs) {
     cardContent.style.fontSize = "1.2rem"
 
     submitBtnClickCount++;
-    console.log(card)
-    /*if(submitBtnClickCount > 1){
-    cardContainer.replaceChildren(card);
-  }*/
+  
+    if(submitBtnClickCount >= 1){
+    myLibrary.shift();
+  }
   });
 }
 
@@ -105,7 +103,6 @@ function inputNewBook(){
     year.value = '';
     read.value = '';
     newBookForm.style.display = 'none';
-    
   })
 };
 
@@ -114,9 +111,7 @@ inputNewBook();
 /*
 **TO DO**
 --Remove last last enetered book as child from card container so duplicates dont arise//May have to use a click counter to achieve
---Style form--Maybe place it in the sidebar?? Make it nice please :)
---Style cards
---Style container
+-- style form
 --Style Style Style lol
 --Fix any other bugs that may pop up
 */
