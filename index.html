@@ -9,31 +9,35 @@
 </head>
 
 <body>
-  <button id="new-book-btn">New Book</button>
-  <form id="new-book" action="app.js" method="post">
-    <ul>
-      <li>
-        <label for="title">Title</label>
-        <input id="title" name="title" type="text" value="">
-      </li>
-      <li>
-        <label for="author">Author</label>
-        <input type="text" id="author">
-      </li>
-      <li>
-        <label for="year">Published</label>
-        <input type="text" id="year">
-      </li>
-      <li>
-        <label for="read">Read</label>
-        <input type="text" id="read">
-      </li>
-      <li>
-        <input id="submit" type="submit">
-      </li>
-    </ul>
-  </form>
-  <div id="card-container"></div>
+  <div class="main-content">
+    <button id="new-book-btn">New Book</button>
+
+    <form id="new-book" action="app.js" method="post">
+      <ul>
+        <li>
+          <label for="title">Title</label>
+          <input id="title" name="title" type="text" value="">
+        </li>
+        <li>
+          <label for="author">Author</label>
+          <input type="text" id="author">
+        </li>
+        <li>
+          <label for="year">Published</label>
+          <input type="text" id="year">
+        </li>
+        <li>
+          <label for="read">Read</label>
+          <input type="text" id="read">
+        </li>
+        <li>
+          <input id="submit" type="submit">
+        </li>
+      </ul>
+    </form>
+
+    <div id="card-container"></div>
+  </div>
 </body>
 <script src="app.js"></script>
 
