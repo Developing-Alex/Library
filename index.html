@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Library</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -13,33 +16,29 @@
     <h1>Library</h1>
     <a id="login" href="#">Login</a>
   </header>
-  <div class="main-content">
-    <button id="new-book-btn">New Book</button>
-
-    <form id="new-book" action="app.js" method="post">
+  <dialog>
+    <form id="new-book" action="app.js" method="dialog">
       <ul>
         <li>
-          <label for="title">Title</label>
-          <input id="title" name="title" type="text" value="">
+          <input id="title" name="title" type="text" placeholder="Title" required>
         </li>
         <li>
-          <label for="author">Author</label>
-          <input type="text" id="author">
+          <input type="text" id="author" placeholder="Author" required>
+        </li>
+        <input type="text" id="year" placeholder="Published" required>
         </li>
         <li>
-          <label for="year">Published</label>
-          <input type="text" id="year">
-        </li>
-        <li>
-          <label for="read">Read</label>
-          <input type="text" id="read">
+          <label for="read">Have you read it?</label>
+          <input type="checkbox" id="read">
         </li>
         <li>
           <input id="submit" type="submit">
         </li>
       </ul>
     </form>
-
+  </dialog>
+  <div class="main-content">
+    <button id="new-book-btn">Add Book</button>
     <div id="card-container"></div>
   </div>
 </body>

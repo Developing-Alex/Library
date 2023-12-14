@@ -1,6 +1,7 @@
-const newBookBtn = document.getElementById('new-book-btn');
+const addBookBtn = document.getElementById('new-book-btn');
 const newBookForm = document.getElementById('new-book');
 const cardContainer = document.getElementById('card-container');
+const dialogModal = document.querySelector('dialog');
 let submitBtnClickCount = 0;
 
 const myLibrary = [];
@@ -77,9 +78,10 @@ function displayBook(arrOfObjs) {
   });
 }
 
-//Changes newBookForm display from none to block//
-newBookBtn.addEventListener('click', () => {
-  newBookForm.style.display = 'block';
+//When clicked, a dialog box pops up to allow user input, it also hides the add book button//
+addBookBtn.addEventListener('click', () => {
+  dialogModal.showModal();
+  addBookBtn.style.display = "none";
 });
 
 //Takes user input from html form, creates Book objects using said data and pushes objects to myLibrary array//
@@ -102,7 +104,8 @@ function inputNewBook(){
     author.value = '';
     year.value = '';
     read.value = '';
-    newBookForm.style.display = 'none';
+    dialogModal.close();
+    addBookBtn.style.display = "block";
   })
 };
 
