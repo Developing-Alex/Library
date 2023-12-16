@@ -128,7 +128,8 @@ function inputNewBook() {
 inputNewBook();
 /*
 **TO DO**
---Remove last last enetered book as child from card container so duplicates dont arise//May have to use a click counter to achieve
+--Add remove book button
+--Add button to change read status on cards
 -- style form
 --Style 
 --Fix any other bugs that may pop up
