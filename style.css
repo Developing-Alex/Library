@@ -58,6 +58,10 @@ ul {
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
+#submit:active {
+  transform: scale(0.98); 
+}
+
 .main-content {
   display: flex;
   flex-direction: column;
@@ -85,4 +89,8 @@ ul {
   cursor: pointer;
   outline: none;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+#new-book-btn:active {
+  transform: scale(0.98); 
 }

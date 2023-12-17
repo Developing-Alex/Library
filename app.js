@@ -82,8 +82,9 @@ function displayBook(arrOfObjs) {
     removeBook.style.border = "none";
     removeBook.style.cursor = "pointer";
     removeBook.style.boxShadow = "0px 8px 15px rgba(0, 0, 0, 0.1)"
-
-
+    removeBook.addEventListener('mousedown', () => {
+      removeBook.style.transform = "scale(0.98)";
+    })
   });
 }
 
