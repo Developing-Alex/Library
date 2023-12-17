@@ -2,6 +2,7 @@ const addBookBtn = document.getElementById('new-book-btn');
 const newBookForm = document.getElementById('new-book');
 const cardContainer = document.getElementById('card-container');
 const dialogModal = document.querySelector('dialog');
+let cardId = 0;
 let i = 0;
 
 const myLibrary = [];
@@ -26,16 +27,20 @@ function addBookToLibrary(newBook) {
 
 //This function renders books from an array to displayable cards on the UI//
 function displayBook(arrOfObjs) {
-
+  cardId ++
   //loops through array, creates cards and content elements for each index of the array//
   arrOfObjs.forEach(element => {
     const card = document.createElement("table");
+    card.setAttribute('id', cardId - 1);
+    card.setAttribute('class', 'card');
     cardContainer.appendChild(card);
     const cardHeader = document.createElement("thead");
     card.appendChild(cardHeader);
     const cardTitle = document.createElement("h3");
+    cardTitle.setAttribute('class', 'card-title');
     cardHeader.appendChild(cardTitle);
-    const cardContent = document.createElement("tbody")
+    const cardContent = document.createElement("tbody");
+    cardContent.setAttribute('class', 'card-content');
     card.appendChild(cardContent);
     const cardAuthor = document.createElement("td");
     cardContent.appendChild(cardAuthor);
@@ -44,6 +49,9 @@ function displayBook(arrOfObjs) {
     const cardRead = document.createElement("td");
     cardContent.appendChild(cardRead);
     const removeBook = document.createElement("button");
+    removeBook.setAttribute('value', cardId - 1);
+    removeBook.setAttribute('class', 'remove-book');
+    console.log(parseInt(removeBook.value))
     card.appendChild(removeBook);
 
     //fills cards with content//
@@ -53,37 +61,20 @@ function displayBook(arrOfObjs) {
     cardRead.innerText = `Have you read this? ${element.read}`;
     removeBook.innerText = 'Remove';
 
-    //styles cards//
-    card.style.boxShadow = "0px 8px 15px rgba(0, 0, 0, 0.1)";
-    card.style.backgroundColor = "rgb(250, 250, 255)"
-    card.style.borderRadius = "40px";
-    card.style.display = "flex";
-    card.style.flexDirection = "column";
-    card.style.alignItems = "center";
-    card.style.width = "270px"
-    card.style.height = "300px"
-    card.style.padding = "20px"
-    cardTitle.style.marginTop = "0";
-    cardTitle.style.fontSize = "1.5rem"
-    cardContent.style.display = "flex";
-    cardContent.style.flexDirection = "column";
-    cardContent.style.alignItems = "flex-start";
-    cardContent.style.justifyContent = "center";
-    cardContent.style.gap = "10px";
-    cardContent.style.fontSize = "1.2rem"
-    removeBook.style.width = '140px';
-    removeBook.style.height = "45px";
-    removeBook.style.backgroundColor = "rgb(44, 81, 174)";
-    removeBook.style.color = "whitesmoke";
-    removeBook.style.fontSize = "1rem";
-    removeBook.style.fontWeight = "bold";
-    removeBook.style.borderRadius = "45px";
-    removeBook.style.marginTop = "40px";
-    removeBook.style.border = "none";
-    removeBook.style.cursor = "pointer";
-    removeBook.style.boxShadow = "0px 8px 15px rgba(0, 0, 0, 0.1)"
     removeBook.addEventListener('mousedown', () => {
       removeBook.style.transform = "scale(0.98)";
+    });
+
+    removeBook.addEventListener("click", () => {
+      for(let i = 0; i < myLibrary.length; i ++){
+        console.log(myLibrary.indexOf(i))
+        if(myLibrary.indexOf(i) + 1 === parseInt(removeBook.value)){
+          console.log(`array index is ${myLibrary[i]} and button value is ${removeBook.value}`);
+          cardContainer.removeChild(card)
+          //remove book card at particular id from display
+          //remove book from array
+        }
+      }
     })
   });
 }
@@ -110,7 +101,7 @@ function inputNewBook() {
       addBookToLibrary(new Book(title, author, year, readIt));
     } else {
       addBookToLibrary(new Book(title, author, year, didntReadIt));
-    }
+    };
 
     //Allows cards to be created without duplicates being made
     i++;
@@ -141,10 +132,9 @@ function inputNewBook() {
 inputNewBook();
 /*
 **TO DO**
---Add remove book button
+--Wire up remove book button and add click event to remove book
 --Add button to change read status on cards
 -- style form
---Style 
 --Fix any other bugs that may pop up
     1.Return checkbox to unchecked on new book form after form completion
 */
