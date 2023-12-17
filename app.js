@@ -43,24 +43,26 @@ function displayBook(arrOfObjs) {
     cardContent.appendChild(cardYear);
     const cardRead = document.createElement("td");
     cardContent.appendChild(cardRead);
+    const removeBook = document.createElement("button");
+    card.appendChild(removeBook);
 
     //fills cards with content//
     cardTitle.innerText = `"${element.title}"`;
     cardAuthor.innerText = `By: ${element.author}`;
     cardYear.innerText = `Published: ${element.year}`;
     cardRead.innerText = `Have you read this? ${element.read}`;
+    removeBook.innerText = 'Remove';
 
     //styles cards//
-    card.style.border = "3px solid black";
-    card.style.backgroundColor = "whitesmoke"
-    card.style.borderRadius = "5px";
-    card.style.marginTop = '15px';
+    card.style.boxShadow = "0px 8px 15px rgba(0, 0, 0, 0.1)";
+    card.style.backgroundColor = "rgb(250, 250, 255)"
+    card.style.borderRadius = "40px";
     card.style.display = "flex";
     card.style.flexDirection = "column";
     card.style.alignItems = "center";
     card.style.width = "270px"
     card.style.height = "300px"
-    card.style.padding = "10px"
+    card.style.padding = "20px"
     cardTitle.style.marginTop = "0";
     cardTitle.style.fontSize = "1.5rem"
     cardContent.style.display = "flex";
@@ -69,6 +71,19 @@ function displayBook(arrOfObjs) {
     cardContent.style.justifyContent = "center";
     cardContent.style.gap = "10px";
     cardContent.style.fontSize = "1.2rem"
+    removeBook.style.width = '140px';
+    removeBook.style.height = "45px";
+    removeBook.style.backgroundColor = "rgb(44, 81, 174)";
+    removeBook.style.color = "whitesmoke";
+    removeBook.style.fontSize = "1rem";
+    removeBook.style.fontWeight = "bold";
+    removeBook.style.borderRadius = "45px";
+    removeBook.style.marginTop = "40px";
+    removeBook.style.border = "none";
+    removeBook.style.cursor = "pointer";
+    removeBook.style.boxShadow = "0px 8px 15px rgba(0, 0, 0, 0.1)"
+
+
   });
 }
 
@@ -95,21 +110,18 @@ function inputNewBook() {
     } else {
       addBookToLibrary(new Book(title, author, year, didntReadIt));
     }
-   
+
     //Allows cards to be created without duplicates being made
-    i++; 
-    if(i === 1){
-      console.log(i)
+    i++;
+    if (i === 1) {
       displayBook(myLibrary);
-    }else if(i === 2){
+    } else if (i === 2) {
       let shifted = myLibrary.shift();
-      console.log(i)
       displayBook(myLibrary);
       myLibrary.unshift(shifted);
       console.log(myLibrary)
-    }else{
-      console.log(i)
-      copyMyLibrary = myLibrary.slice(i -1);
+    } else {
+      copyMyLibrary = myLibrary.slice(i - 1);
       displayBook(copyMyLibrary);
     }
   });
@@ -133,4 +145,5 @@ inputNewBook();
 -- style form
 --Style 
 --Fix any other bugs that may pop up
+    1.Return checkbox to unchecked on new book form after form completion
 */
