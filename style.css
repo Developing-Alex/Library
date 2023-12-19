@@ -134,3 +134,7 @@ ul {
   cursor: pointer;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
+
+.remove-book:active {
+  transform: scale(0.98);
+}

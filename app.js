@@ -5,7 +5,7 @@ const dialogModal = document.querySelector('dialog');
 let cardId = 0;
 let i = 0;
 
-const myLibrary = [];
+let myLibrary = [];
 let copyMyLibrary = [];
 
 function Book(title, author, year, read) {
@@ -51,7 +51,6 @@ function displayBook(arrOfObjs) {
     const removeBook = document.createElement("button");
     removeBook.setAttribute('value', cardId - 1);
     removeBook.setAttribute('class', 'remove-book');
-    console.log(parseInt(removeBook.value))
     card.appendChild(removeBook);
 
     //fills cards with content//
@@ -60,21 +59,16 @@ function displayBook(arrOfObjs) {
     cardYear.innerText = `Published: ${element.year}`;
     cardRead.innerText = `Have you read this? ${element.read}`;
     removeBook.innerText = 'Remove';
+    
+    console.log(removeBook.value)
 
-    removeBook.addEventListener('mousedown', () => {
-      removeBook.style.transform = "scale(0.98)";
-    });
-
+    //removes book card when remove button is pressed, also deletes corresponding book object from array//
     removeBook.addEventListener("click", () => {
-      for(let i = 0; i < myLibrary.length; i ++){
-        console.log(myLibrary.indexOf(i))
-        if(myLibrary.indexOf(i) + 1 === parseInt(removeBook.value)){
-          console.log(`array index is ${myLibrary[i]} and button value is ${removeBook.value}`);
-          cardContainer.removeChild(card)
-          //remove book card at particular id from display
-          //remove book from array
+      cardContainer.childNodes.forEach(child => {
+        if(child.id === removeBook.value){
+          cardContainer.removeChild(child);
         }
-      }
+      })
     })
   });
 }
@@ -104,19 +98,18 @@ function inputNewBook() {
     };
 
     //Allows cards to be created without duplicates being made
-    i++;
+    
     if (i === 1) {
       displayBook(myLibrary);
     } else if (i === 2) {
       let shifted = myLibrary.shift();
       displayBook(myLibrary);
       myLibrary.unshift(shifted);
-      console.log(myLibrary)
     } else {
       copyMyLibrary = myLibrary.slice(i - 1);
       displayBook(copyMyLibrary);
     }
-  });
+  })
 
   //Hides newBookForm and resets inputs//
   newBookForm.addEventListener('submit', () => {
@@ -132,9 +125,9 @@ function inputNewBook() {
 inputNewBook();
 /*
 **TO DO**
---Wire up remove book button and add click event to remove book
 --Add button to change read status on cards
 -- style form
 --Fix any other bugs that may pop up
     1.Return checkbox to unchecked on new book form after form completion
+    2.Remove Book Object from myLibrary array upon clicking remove button
 */
