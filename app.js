@@ -27,7 +27,7 @@ function addBookToLibrary(newBook) {
 
 //This function renders books from an array to displayable cards on the UI//
 function displayBook(arrOfObjs) {
-  cardId ++
+  cardId++
   //loops through array, creates cards and content elements for each index of the array//
   arrOfObjs.forEach(element => {
     const card = document.createElement("table");
@@ -46,29 +46,45 @@ function displayBook(arrOfObjs) {
     cardContent.appendChild(cardAuthor);
     const cardYear = document.createElement("td");
     cardContent.appendChild(cardYear);
-    const cardRead = document.createElement("td");
-    cardContent.appendChild(cardRead);
+    const cardRead = document.createElement("button");
+    cardRead.setAttribute('id', 'read-btn');
+    card.appendChild(cardRead);
     const removeBook = document.createElement("button");
     removeBook.setAttribute('value', cardId - 1);
     removeBook.setAttribute('class', 'remove-book');
     card.appendChild(removeBook);
 
-    //fills cards with content//
+    //fills cards with content based on form input//
     cardTitle.innerText = `"${element.title}"`;
     cardAuthor.innerText = `By: ${element.author}`;
     cardYear.innerText = `Published: ${element.year}`;
-    cardRead.innerText = `Have you read this? ${element.read}`;
+    cardRead.innerText = `Read? ${element.read}`;
     removeBook.innerText = 'Remove';
-    
+
     console.log(removeBook.value)
+
+    cardRead.addEventListener('click', () => {
+      if(cardRead.innerText === 'Read? No'){
+        cardRead.innerText = 'Read? Yes';
+      }else if(cardRead.innerText === 'Read? Yes'){
+        cardRead.innerText = 'Read? No';
+      }
+    })
 
     //removes book card when remove button is pressed, also deletes corresponding book object from array//
     removeBook.addEventListener("click", () => {
       cardContainer.childNodes.forEach(child => {
-        if(child.id === removeBook.value){
+        if (child.id === removeBook.value) {
           cardContainer.removeChild(child);
-        }
+        };
       })
+    })
+
+    removeBook.addEventListener("click", (event) => {
+      if (myLibrary) {
+        arrOfObjs.slice(Book, 1);
+        console.log(arrOfObjs);
+      }
     })
   });
 }
@@ -88,7 +104,7 @@ function inputNewBook() {
     const author = document.getElementById('author').value;
     const year = document.getElementById('year').value;
     const read = document.getElementById('read');
-
+    
     const readIt = 'Yes';
     const didntReadIt = 'No';
     if (read.checked) {
@@ -98,7 +114,7 @@ function inputNewBook() {
     };
 
     //Allows cards to be created without duplicates being made
-    
+
     if (i === 1) {
       displayBook(myLibrary);
     } else if (i === 2) {

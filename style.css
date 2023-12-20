@@ -100,15 +100,17 @@ ul {
   background-color: rgb(250, 250, 255);
   border-radius: 40px;
   display: flex;
+  gap: 20px;
   flex-direction: column;
   align-items: center;  
   width: 270px;
-  height: 300px;
+  height: 330px;
   padding: 20px;
 }
 
 .card-title {
-  margin-top: 0;;
+  margin-top: 0;
+  margin-bottom: 15px;
   font-size: 1.5rem;
 }
 
@@ -129,7 +131,6 @@ ul {
   font-size: 1rem;
   font-weight: bold;
   border-radius: 45px;
-  margin-top: 40px;
   border: none;
   cursor: pointer;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -137,4 +138,17 @@ ul {
 
 .remove-book:active {
   transform: scale(0.98);
+}
+
+#read-btn {
+  width: 140px;;
+  height: 45px; 
+  background-color: rgb(44, 81, 174);
+  color: whitesmoke;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 45px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
