@@ -15,10 +15,29 @@ function Book(title, author, year, read) {
   this.read = read;
 }
 
-Book.prototype.info = function () {
-  return `${this.title} by ${this.author}, published in ${this.year} and ${this.read}.`
-  console.log(this.info);
+//Changes the read property of a book object at the 'click' of a button//
+Book.prototype.haveRead = function (e) {
+  e.addEventListener('click', () => {
+    if (this.read === 'No') {
+      e.innerText = 'Read? Yes';
+      this.read = 'Yes';
+      console.log(this.info());
+    } else {
+      e.innerText = 'Read? No';
+      this.read = 'No';
+      console.log(this.info());
+    }
+  })
 }
+
+//Method that returns information entered on book objects when called//
+Book.prototype.info = function () {
+    if(this.read === 'No'){
+      return `"${this.title}" by ${this.author}, published in ${this.year} and I have yet to read this.`
+    }else{
+      return `"${this.title}" by ${this.author}, published in ${this.year} and I have read this.`
+    }
+};
 
 //This take user input and stores new book objects into an array//
 function addBookToLibrary(newBook) {
@@ -63,13 +82,11 @@ function displayBook(arrOfObjs) {
 
     console.log(removeBook.value)
 
-    cardRead.addEventListener('click', () => {
-      if(cardRead.innerText === 'Read? No'){
-        cardRead.innerText = 'Read? Yes';
-      }else if(cardRead.innerText === 'Read? Yes'){
-        cardRead.innerText = 'Read? No';
-      }
-    })
+
+   console.log(element.info());
+
+    //calls the haveRead method on the book object
+    element.haveRead(cardRead);
 
     //removes book card when remove button is pressed, also deletes corresponding book object from array//
     removeBook.addEventListener("click", () => {
@@ -80,12 +97,14 @@ function displayBook(arrOfObjs) {
       })
     })
 
+       /****
     removeBook.addEventListener("click", (event) => {
       if (myLibrary) {
         arrOfObjs.slice(Book, 1);
         console.log(arrOfObjs);
       }
     })
+    ****/
   });
 }
 
@@ -103,14 +122,12 @@ function inputNewBook() {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const year = document.getElementById('year').value;
-    const read = document.getElementById('read');
-    
-    const readIt = 'Yes';
-    const didntReadIt = 'No';
-    if (read.checked) {
-      addBookToLibrary(new Book(title, author, year, readIt));
+    const readCheckbox = document.getElementById('read-checkbox');
+
+    if (readCheckbox.checked) {
+      addBookToLibrary(new Book(title, author, year, 'Yes'));
     } else {
-      addBookToLibrary(new Book(title, author, year, didntReadIt));
+      addBookToLibrary(new Book(title, author, year, 'No'));
     };
 
     //Allows cards to be created without duplicates being made
@@ -132,16 +149,15 @@ function inputNewBook() {
     title.value = '';
     author.value = '';
     year.value = '';
-    read.value = '';
     dialogModal.close();
     addBookBtn.style.display = "block";
-  })
+  });
+
 };
 
 inputNewBook();
 /*
 **TO DO**
---Add button to change read status on cards
 -- style form
 --Fix any other bugs that may pop up
     1.Return checkbox to unchecked on new book form after form completion
