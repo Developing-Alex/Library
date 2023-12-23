@@ -32,11 +32,11 @@ Book.prototype.haveRead = function (e) {
 
 //Method that returns information entered on book objects when called//
 Book.prototype.info = function () {
-    if(this.read === 'No'){
-      return `"${this.title}" by ${this.author}, published in ${this.year} and I have yet to read this.`
-    }else{
-      return `"${this.title}" by ${this.author}, published in ${this.year} and I have read this.`
-    }
+  if (this.read === 'No') {
+    return `"${this.title}" by ${this.author}, published in ${this.year} and I have yet to read this.`
+  } else {
+    return `"${this.title}" by ${this.author}, published in ${this.year} and I have read this.`
+  }
 };
 
 //This take user input and stores new book objects into an array//
@@ -83,9 +83,9 @@ function displayBook(arrOfObjs) {
     console.log(removeBook.value)
 
 
-   console.log(element.info());
+    console.log(element.info());
 
-    //calls the haveRead method on the book object
+    //calls the haveRead() method on a book object//
     element.haveRead(cardRead);
 
     //removes book card when remove button is pressed, also deletes corresponding book object from array//
@@ -94,17 +94,13 @@ function displayBook(arrOfObjs) {
         if (child.id === removeBook.value) {
           cardContainer.removeChild(child);
         };
+        if (arrOfObjs) {
+          myLibrary.splice(card.id, 1);
+          arrOfObjs.splice(card.id, 1);
+          console.log(myLibrary);
+        };
       })
     })
-
-       /****
-    removeBook.addEventListener("click", (event) => {
-      if (myLibrary) {
-        arrOfObjs.slice(Book, 1);
-        console.log(arrOfObjs);
-      }
-    })
-    ****/
   });
 }
 
@@ -131,7 +127,6 @@ function inputNewBook() {
     };
 
     //Allows cards to be created without duplicates being made
-
     if (i === 1) {
       displayBook(myLibrary);
     } else if (i === 2) {
@@ -152,14 +147,9 @@ function inputNewBook() {
     dialogModal.close();
     addBookBtn.style.display = "block";
   });
-
 };
 
 inputNewBook();
 /*
 **TO DO**
 -- style form
---Fix any other bugs that may pop up
-    1.Return checkbox to unchecked on new book form after form completion
-    2.Remove Book Object from myLibrary array upon clicking remove button
-*/
