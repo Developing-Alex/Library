@@ -8,10 +8,10 @@ let i = 0;
 let myLibrary = [];
 let copyMyLibrary = [];
 
-function Book(title, author, year, read) {
+function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
-  this.year = year;
+  this.pages = pages;
   this.read = read;
 }
 
@@ -33,9 +33,9 @@ Book.prototype.haveRead = function (e) {
 //Method that returns information entered on book objects when called//
 Book.prototype.info = function () {
   if (this.read === 'No') {
-    return `"${this.title}" by ${this.author}, published in ${this.year} and I have yet to read this.`
+    return `"${this.title}" by ${this.author}, published in ${this.pages} and I have yet to read this.`
   } else {
-    return `"${this.title}" by ${this.author}, published in ${this.year} and I have read this.`
+    return `"${this.title}" by ${this.author}, published in ${this.pages} and I have read this.`
   }
 };
 
@@ -63,8 +63,8 @@ function displayBook(arrOfObjs) {
     card.appendChild(cardContent);
     const cardAuthor = document.createElement("td");
     cardContent.appendChild(cardAuthor);
-    const cardYear = document.createElement("td");
-    cardContent.appendChild(cardYear);
+    const cardPages = document.createElement("td");
+    cardContent.appendChild(cardPages);
     const cardRead = document.createElement("button");
     cardRead.setAttribute('id', 'read-btn');
     card.appendChild(cardRead);
@@ -76,7 +76,7 @@ function displayBook(arrOfObjs) {
     //fills cards with content based on form input//
     cardTitle.innerText = `"${element.title}"`;
     cardAuthor.innerText = `By: ${element.author}`;
-    cardYear.innerText = `Published: ${element.year}`;
+    cardPages.innerText = `Published: ${element.pages}`;
     cardRead.innerText = `Read? ${element.read}`;
     removeBook.innerText = 'Remove';
 
@@ -117,13 +117,13 @@ function inputNewBook() {
     event.preventDefault();
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
-    const year = document.getElementById('year').value;
+    const pages = document.getElementById('pages').value;
     const readCheckbox = document.getElementById('read-checkbox');
 
     if (readCheckbox.checked) {
-      addBookToLibrary(new Book(title, author, year, 'Yes'));
+      addBookToLibrary(new Book(title, author, pages, 'Yes'));
     } else {
-      addBookToLibrary(new Book(title, author, year, 'No'));
+      addBookToLibrary(new Book(title, author, pages, 'No'));
     };
 
     //Allows cards to be created without duplicates being made
@@ -143,13 +143,11 @@ function inputNewBook() {
   newBookForm.addEventListener('submit', () => {
     title.value = '';
     author.value = '';
-    year.value = '';
+    pages.value = '';
     dialogModal.close();
     addBookBtn.style.display = "block";
   });
 };
 
 inputNewBook();
-/*
-**TO DO**
--- style form*/
+

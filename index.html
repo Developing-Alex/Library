@@ -20,16 +20,16 @@
     <form id="new-book" action="app.js" method="dialog">
       <ul>
         <li>
-          <input id="title" name="title" type="text" placeholder="Title" required>
+          <input class="input-bar" id="title" name="title" type="text" placeholder="Title" required>
         </li>
         <li>
-          <input type="text" id="author" name="author" placeholder="Author" required>
+          <input class="input-bar" type="text" id="author" name="author" placeholder="Author" required>
         </li>
-        <input type="text" id="year" name="year" placeholder="Published" required>
+        <input class="input-bar" type="number" id="pages" name="pages" placeholder="Pages" required>
         </li>
-        <li>
-          <label for="read-checkbox">Have you read it?</label>
-          <input type="checkbox" id="read-checkbox" name="read" value="">
+        <li id="read">
+          <label for="read-checkbox">Have you read this book?</label>
+          <input type="checkbox" id="read-checkbox" name="read">
         </li>
         <li>
           <input id="submit" type="submit">
@@ -38,7 +38,7 @@
     </form>
   </dialog>
   <div class="main-content">
-    <button id="new-book-btn">Add Book</button>
+    <button id="new-book-btn">New Book</button>
     <div id="card-container"></div>
   </div>
 </body>
