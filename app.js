@@ -8,36 +8,38 @@ let i = 0;
 let myLibrary = [];
 let copyMyLibrary = [];
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
-
-//Changes the read property of a book object at the 'click' of a button//
-Book.prototype.haveRead = function (e) {
-  e.addEventListener('click', () => {
-    if (this.read === 'No') {
-      e.innerText = 'Read? Yes';
-      this.read = 'Yes';
-      console.log(this.info());
-    } else {
-      e.innerText = 'Read? No';
-      this.read = 'No';
-      console.log(this.info());
-    }
-  })
-}
-
-//Method that returns information entered on book objects when called//
-Book.prototype.info = function () {
-  if (this.read === 'No') {
-    return `"${this.title}" by ${this.author}, published in ${this.pages} and I have yet to read this.`
-  } else {
-    return `"${this.title}" by ${this.author}, published in ${this.pages} and I have read this.`
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
   }
-};
+  //Changes the read property of a book object at the 'click' of a button//
+  haveRead(e) {
+    e.addEventListener('click', () => {
+      if (this.read === 'No') {
+        e.innerText = 'Read? Yes';
+        this.read = 'Yes';
+        console.log(this.info());
+      } else {
+        e.innerText = 'Read? No';
+        this.read = 'No';
+        console.log(this.info());
+      }
+    });
+  }
+  //Method that returns information entered on book objects when called//
+  info() {
+    if (this.read === 'No') {
+      return `"${this.title}" by ${this.author}, has ${this.pages} pages and I have yet to read this.`;
+    } else {
+      return `"${this.title}" by ${this.author}, has ${this.pages} pages and I have read this.`;
+    }
+  }
+}
+
+
 
 //This take user input and stores new book objects into an array//
 function addBookToLibrary(newBook) {
@@ -76,7 +78,7 @@ function displayBook(arrOfObjs) {
     //fills cards with content based on form input//
     cardTitle.innerText = `"${element.title}"`;
     cardAuthor.innerText = `By: ${element.author}`;
-    cardPages.innerText = `Published: ${element.pages}`;
+    cardPages.innerText = `Pages: ${element.pages}`;
     cardRead.innerText = `Read? ${element.read}`;
     removeBook.innerText = 'Remove';
 
